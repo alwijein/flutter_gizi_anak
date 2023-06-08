@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "499018557002",
+    "project_id": "e-gizi-anak",
+    "storage_bucket": "e-gizi-anak.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:499018557002:android:4cdfad88ddd54e3033e8b3",
+        "android_client_info": {
+          "package_name": "com.cleoun.flutter_gizi_anak"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "499018557002-88mfcu2u491fm9ds78oi7ilaucuun430.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cleoun.flutter_gizi_anak",
+            "certificate_hash": "a9e772b95246af7b7ae5224222e676f92fd98ff5"
+          }
+        },
+        {
+          "client_id": "499018557002-j1lc8plvjo4bp9afhrb5t80f6762tpii.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4sDbk3pcMlBNjR2KdK0jfQb9vkNQ7OiE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "499018557002-j1lc8plvjo4bp9afhrb5t80f6762tpii.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
