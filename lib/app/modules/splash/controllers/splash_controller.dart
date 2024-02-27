@@ -23,6 +23,11 @@ class SplashController extends GetxController {
   void onAuthStateChanged(User? user) async {
     if (user != null) {
       final userModel = await UserServices.getUser(user.uid);
+
+      if (userModel.role == 'admin') {
+        Get.offAllNamed(Routes.ADMIN);
+        return;
+      }
       Get.offAllNamed(Routes.NAVBAR, arguments: userModel);
     } else {
       Get.offAllNamed(Routes.ONBOARDING);

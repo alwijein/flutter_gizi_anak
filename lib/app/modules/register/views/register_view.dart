@@ -84,11 +84,11 @@ class RegisterView extends GetView<RegisterController> {
                         fontWeight: semiBold,
                       ),
                     ),
-                    press: () {
+                    press: () async {
                       if (!controller.checkForm()) {
                         return;
                       }
-                      AuthServices.signUp(
+                      await AuthServices.signUp(
                         nama: controller.namaC.text,
                         namaLengkap: controller.namaLengkapC.text,
                         email: controller.emailC.text,

@@ -3,6 +3,8 @@ part of 'services.dart';
 class MonitoringAnakServices {
   static CollectionReference _anakCollection =
       FirebaseFirestore.instance.collection('profile_anak');
+  static CollectionReference _userCollection =
+      FirebaseFirestore.instance.collection('users');
 
   static CollectionReference giziAnakCollection =
       FirebaseFirestore.instance.collection('gizi_anak');
@@ -51,6 +53,52 @@ class MonitoringAnakServices {
             jenisKelamin: item['jenisKelamin'],
             tanggalLahri: item['tanggalLahri'],
             umurAnak: item['umurAnak'],
+          ),
+        );
+      }
+      return data;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  static Future<List<ProfileAnakModel>> getAllProfileAnak() async {
+    try {
+      List<ProfileAnakModel> data = [];
+      QuerySnapshot maps = await _anakCollection.get();
+
+      for (var item in maps.docs) {
+        data.add(
+          ProfileAnakModel(
+            // userId: id,
+            foto: item['foto'],
+            namaAnak: item['namaAnak'],
+            jenisKelamin: item['jenisKelamin'],
+            tanggalLahri: item['tanggalLahri'],
+            umurAnak: item['umurAnak'],
+          ),
+        );
+      }
+      return data;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  static Future<List<UserModel>> getAllUser() async {
+    try {
+      List<UserModel> data = [];
+      QuerySnapshot maps = await _userCollection.get();
+
+      for (var item in maps.docs) {
+        data.add(
+          UserModel(
+            id: item.id,
+            nama: item['nama'],
+            namaLengkap: item['namaLengkap'],
+            email: item['email'],
+            role: item['role'],
+            alamat: item['alamat'],
           ),
         );
       }

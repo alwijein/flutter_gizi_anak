@@ -14,6 +14,7 @@ abstract class Routes {
   static const MONITORING = _Paths.MONITORING;
   static const PROFILE_ANAK = _Paths.PROFILE_ANAK;
   static const PERALATAN_MENGUKUR = _Paths.PERALATAN_MENGUKUR;
+  static const ADMIN = _Paths.ADMIN;
 }
 
 abstract class _Paths {
@@ -27,4 +28,5 @@ abstract class _Paths {
   static const MONITORING = '/monitoring';
   static const PROFILE_ANAK = '/profile-anak';
   static const PERALATAN_MENGUKUR = '/peralatan-mengukur';
+  static const ADMIN = '/admin';
 }

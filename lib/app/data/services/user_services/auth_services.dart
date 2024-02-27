@@ -27,7 +27,7 @@ class AuthServices {
 
       // ...
 
-      await UserServices.updateUser(user);
+      // await UserServices.updateUser(user);
 
       return true;
 

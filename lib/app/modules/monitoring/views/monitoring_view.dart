@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gizi_anak/app/data/models/profile_anak_model/profile_anak_model.dart';
+import 'package:flutter_gizi_anak/app/data/models/user_model/user_model.dart';
 import 'package:flutter_gizi_anak/app/data/services/services.dart';
 import 'package:flutter_gizi_anak/app/modules/components/components.dart';
 import 'package:flutter_gizi_anak/app/modules/monitoring/views/create_profile_anak_view.dart';
@@ -31,7 +32,7 @@ class MonitoringView extends GetView<MonitoringController> {
                       controller.listProfileAnak.value[index].userId,
                       controller.listProfileAnak.value[index].namaAnak,
                     );
-                    await controller.getProfileAnak();
+                    await controller.getProfileAnak(Get.arguments);
                   },
                   press: () => Get.toNamed(
                     Routes.PROFILE_ANAK,
@@ -67,18 +68,20 @@ class MonitoringView extends GetView<MonitoringController> {
           ),
         ),
       ),
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.all(kDefaultPadding),
-        child: DefaultButton(
-          text: Text(
-            'Tambah Profile Anak',
-            style: whiteTextStyle,
-          ),
-          press: () => Get.to(
-            CreateProfileAnakCView(),
-          ),
-        ),
-      ),
+      bottomNavigationBar: !controller.isFromAdmin
+          ? Padding(
+              padding: EdgeInsets.all(kDefaultPadding),
+              child: DefaultButton(
+                text: Text(
+                  'Tambah Profile Anak',
+                  style: whiteTextStyle,
+                ),
+                press: () => Get.to(
+                  CreateProfileAnakCView(),
+                ),
+              ),
+            )
+          : null,
     );
   }
 }
@@ -143,6 +146,59 @@ class CardMonitoringAnak extends StatelessWidget {
               color: kPrimaryColor,
               size: getPropertionateScreenWidht(25),
             ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class CardUser extends StatelessWidget {
+  const CardUser({
+    Key? key,
+    required this.data,
+    required this.press,
+  }) : super(key: key);
+
+  final UserModel data;
+  final Function() press;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: press,
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          vertical: kDefaultPadding,
+        ),
+        margin: EdgeInsets.only(bottom: getPropertionateScreenWidht(14)),
+        decoration: BoxDecoration(
+          color: kBackgroundColor2,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: softShadow,
+        ),
+        child: ListTile(
+          title: Text(
+            data.namaLengkap,
+            style: primaryTextStyle.copyWith(
+              fontWeight: bold,
+              fontSize: 18,
+            ),
+          ),
+          subtitle: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Alamat:  ${data.alamat}',
+                style: primaryTextStyle.copyWith(),
+              ),
+              Text(
+                data.email,
+                style: primaryTextStyle.copyWith(
+                  color: kPrimaryColor,
+                ),
+              ),
+            ],
           ),
         ),
       ),

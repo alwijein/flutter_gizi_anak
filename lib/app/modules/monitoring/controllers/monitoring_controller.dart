@@ -18,6 +18,8 @@ class MonitoringController extends GetxController with StateMixin {
 
   File foto = File('');
 
+  bool isFromAdmin = true;
+
   Future<void> getImage() async {
     final XFile? image = await picker.pickImage(
       source: ImageSource.gallery,
@@ -28,15 +30,15 @@ class MonitoringController extends GetxController with StateMixin {
     fileName.text = image.name;
   }
 
-  NavbarController userController = Get.find();
+  late NavbarController userController;
 
   final listProfileAnak = Rx<List<ProfileAnakModel>>([]);
 
-  Future getProfileAnak() async {
+  Future getProfileAnak(String? id) async {
     try {
       change(listProfileAnak, status: RxStatus.loading());
       listProfileAnak.value = await MonitoringAnakServices.getProfileAnak(
-          userController.userModel.id);
+          id ?? userController.userModel.id);
 
       if (listProfileAnak.value.isEmpty) {
         change(listProfileAnak, status: RxStatus.empty());
@@ -61,7 +63,14 @@ class MonitoringController extends GetxController with StateMixin {
 
   @override
   void onInit() {
-    getProfileAnak();
+    String? id = Get.arguments;
+
+    if (id == null) {
+      userController = Get.find<NavbarController>();
+      isFromAdmin = false;
+    }
+
+    getProfileAnak(id);
     super.onInit();
   }
 }

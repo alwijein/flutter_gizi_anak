@@ -38,7 +38,7 @@ class ProfileAnakView extends GetView<ProfileAnakController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Nama lengkap',
+                        'Nama Anak',
                         style: subtitleTextStyle.copyWith(
                           fontWeight: semiBold,
                           fontSize: 16,
